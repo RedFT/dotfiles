@@ -190,10 +190,10 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill ${HOME}/Pictures/Wallpapers
 exec gnome-settings-daemon
 
 # autostart
-exec --no-startup-id i3-msg workspace 1              ; exec gnome-terminal                     ;
-exec --no-startup-id i3-msg workspace 8:transmission ; exec /usr/bin/transmission-gtk          ;
-exec --no-startup-id i3-msg workspace 10:music       ; exec /usr/bin/gnome-terminal -e ncmpcpp ;
-exec --no-startup-id i3-msg workspace 9:web          ; exec /usr/bin/firefox                   ; exec ${HOME}/.local/bin/caprine ;
+exec --no-startup-id i3-msg 'workspace "1"              ; exec gnome-terminal                     ;'
+exec --no-startup-id i3-msg 'workspace "8:transmission" ; exec /usr/bin/transmission-gtk          ;'
+exec --no-startup-id i3-msg 'workspace "10:music"       ; exec /usr/bin/gnome-terminal -e ncmpcpp ;'
+exec --no-startup-id i3-msg 'workspace "9:web"          ; exec /usr/bin/firefox                   ; exec $HOME/.local/bin/caprine ;'
 
 # lock screen
 bindsym $mod+Shift+x exec i3lock
