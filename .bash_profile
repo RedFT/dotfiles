@@ -5,6 +5,6 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 export TERMINAL="gnome-terminal"
-export PATH=$PATH:/home/norbs/.local/bin
+export PATH=$PATH:$HOME/.local/bin
 
 exec startx
