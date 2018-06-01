@@ -10,7 +10,7 @@ Plug 'euclio/vim-markdown-composer'
 
 "Airline
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'redft/vim-airline-themes'
 
 "Snippets
 Plug 'garbas/vim-snipmate'
