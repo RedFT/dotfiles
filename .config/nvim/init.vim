@@ -29,21 +29,7 @@ Plug 'wikitopian/hardmode'
 call plug#end()
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-"Buffer Navigation
-map <C-j> :e 
-map <silent><C-k> :bd! <CR>
-map <silent><C-h> :bp! <CR>
-map <silent><C-l> :bn! <CR>
-
-map <leader>nt :NERDTreeToggle<CR>
-
-"Tabularize hotkey
-map <S-t> :Tabularize /
-
 set inccommand=nosplit
-
-" Remove highlighting after search
-map <silent><C-n> :nohlsearch <CR>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -57,3 +43,17 @@ setlocal foldmethod=indent
 
 colo gruvbox
 set background=dark
+
+"Buffer Navigation
+noremap <C-j> :e 
+noremap <silent><C-k> :bd! <CR>
+noremap <silent><C-h> :bp! <CR>
+noremap <silent><C-l> :bn! <CR>
+
+noremap <leader>nt :NERDTreeToggle<CR>
+
+"Tabularize hotkey
+noremap <S-t> :Tabularize /
+
+" Remove highlighting after search
+noremap <silent><C-n> :nohlsearch <CR>
