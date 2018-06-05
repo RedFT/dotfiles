@@ -179,8 +179,6 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill ${HOME}/Pictures/Wallpapers
 for_window [class="^.*"] border pixel 0
 hide_edge_borders both
 
-assign [class="Soundnode"] $ws10
-
 # set gap size
 gaps inner 20
 gaps outer 0
@@ -215,6 +213,8 @@ bindsym $mod+u exec mpc toggle
 bindsym $mod+i exec mpc prev
 bindsym $mod+o exec mpc next
 bindsym $mod+p exec mpc toggle
+
+bindsym $mod+Shift+s exec systemctl hibernate # I used s for "sleep"
 
 # exect_always mpd $HOME/.config/mpd/mpd.conf
 exec_always compton -f
