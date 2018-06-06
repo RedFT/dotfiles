@@ -103,7 +103,7 @@ set $ws4   "4"
 set $ws5   "5"
 set $ws6   "6"
 set $ws7   "7"
-set $ws8   "8:transmission"
+set $ws8   "8"
 set $ws9   "9:web"
 set $ws10  "10:music"
 
@@ -187,7 +187,6 @@ exec gnome-settings-daemon
 
 # autostart
 exec --no-startup-id i3-msg 'workspace "1"              ; exec gnome-terminal                     ;'
-exec --no-startup-id i3-msg 'workspace "8:transmission" ; exec /usr/bin/transmission-gtk          ;'
 exec --no-startup-id i3-msg 'workspace "10:music"       ; exec /usr/bin/gnome-terminal -e ncmpcpp ;'
 exec --no-startup-id i3-msg 'workspace "9:web"          ; exec /usr/bin/firefox                   ; exec $HOME/.local/bin/caprine ;'
 
@@ -201,9 +200,9 @@ bindsym --release Shift+Print exec scrot -s 'screenshot_region_%Y%m%d_%H%M%S.png
 ## Multimedia
 # Pulse Audio controls
 exec_always --no-startup-id feh --no-fehbg --bg-fill ${HOME}/Pictures/Wallpapers/cowboy_bebop_spaceship.jpg
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pavolume.sh --up #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pavolume.sh --down #decrease sound volume
+bindsym XF86AudioMute        exec --no-startup-id pavolume.sh --togmute # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp   exec xbacklight +20 # increase screen brightness

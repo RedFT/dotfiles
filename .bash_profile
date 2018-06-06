@@ -4,7 +4,7 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export TERMINAL="gnome-terminal"
+export TERMINAL="termite"
 export PATH=$PATH:$HOME/.local/bin
 
 exec startx

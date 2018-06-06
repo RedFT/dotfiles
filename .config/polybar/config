@@ -37,13 +37,13 @@ border-color = #00000000
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Ubuntu Mono:pixelsize=12;0
-font-1 = SauceCodePro Nerd Font:pixelsize=11;1
+font-0 = Noto Sans Mono:pixelsize=11;0
+font-1 = SauceCodePro Nerd Font:pixelsize=13;1
 
 
 modules-left = i3
 modules-center = mpd
-modules-right = xbacklight volume wlan eth battery0 battery1 date 
+modules-right = xbacklight volume pulseaudio-tail wlan eth battery0 battery1 date 
 ;modules-right = xbacklight volume memory cpu temperature wlan eth battery date 
 
 ; tray-position = right
@@ -112,7 +112,7 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 type = internal/mpd
 
 format-online = <label-song>
-label-song-maxlen = 60
+label-song-maxlen = 40
 label-song-ellipsis = true
 label-song =  %artist% - %title%
 label-offline =  mpd is offline
@@ -293,6 +293,15 @@ animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
+
+[module/pulseaudio-tail]
+type = custom/script
+exec = $HOME/.config/polybar/polybar-scripts/polybar-scripts/pulseaudio-tail/pulseaudio-tail.sh
+tail = true
+click-right = exec pavucontrol &
+click-left = $HOME/.config/polybar/polybar-scripts/polybar-scripts/pulseaudio-tail/pulseaudio-tail.sh --mute
+scroll-up = $HOME/.config/polybar/polybar-scripts/polybar-scripts/pulseaudio-tail/pulseaudio-tail.sh --up
+scroll-down = $HOME/.config/polybar/polybar-scripts/polybar-scripts/pulseaudio-tail/pulseaudio-tail.sh --down
 
 [settings]
 screenchange-reload = true
