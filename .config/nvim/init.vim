@@ -4,56 +4,109 @@ Plug 'tomtom/tlib_vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular'
 Plug 'anyakichi/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
+
+"Proper Folding For Python 
+Plug 'tmhedberg/SimpylFold'
 
 "Markdown 
-Plug 'euclio/vim-markdown-composer'
+"Plug 'euclio/vim-markdown-composer'
 
 "Airline
 Plug 'vim-airline/vim-airline'
-Plug 'redft/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 
 "Snippets
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 
-"Color Schemes
-Plug 'flazz/vim-colorschemes'
-Plug 'junegunn/seoul256.vim'
-Plug '/NLKNguyen/papercolor-theme'
-Plug 'jacoborus/tender.vim'
+Plug 'michaeljsmith/vim-indent-object'
 
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-dispatch'
-
-Plug 'wikitopian/hardmode'
+"Gruvbox Color Scheme
+Plug 'morhetz/gruvbox'
 call plug#end()
-"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-set inccommand=nosplit
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
+""""""""""""""""""""""Configurations
 set ts=8 et sw=4 sts=4
 syntax on
 filetype indent on
 set number
 set hidden
-setlocal foldmethod=indent
+"setlocal foldmethod=indent
 
+"Allows live highlighting of search
+set inccommand=nosplit
+
+"Airline settings
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts            = 1
+
+"Set colorscheme 
 colo gruvbox
 set background=dark
 
-"Buffer Navigation
-noremap <C-j> :e 
-noremap <silent><C-k> :bd! <CR>
-noremap <silent><C-h> :bp! <CR>
-noremap <silent><C-l> :bn! <CR>
 
-noremap <leader>nt :NERDTreeToggle<CR>
+""""""""""""""""""""""MY KEYBINDINGS
+"Keybindings to make vim configuration easier
+nnoremap <silent><leader>ev :edit   $MYVIMRC <CR>
+nnoremap <silent><leader>sv :source $MYVIMRC <CR>
+
+"Line swaps
+"(below)
+nnoremap - ddpk
+"(above)
+nnoremap _ ddkPj
+
+"Capitalizes inner word
+inoremap <silent><C-u> <Esc>viwUea
+nnoremap <silent><C-u> viwU
+
+"Buffer List Navigation
+nnoremap <C-j> :e 
+nnoremap <silent><C-k> :bd! <CR>
+nnoremap <silent><C-h> :bp! <CR>
+nnoremap <silent><C-l> :bn! <CR>
+
+" Remove highlighting after search
+nnoremap <silent><C-n> :nohlsearch <CR>
+
+"parens operation-pending mappings
+onoremap <silent>in( :<c-u>normal! f(vi(<CR>
+onoremap <silent>il( :<c-u>normal! F)vi(<CR>
+onoremap <silent>an( :<c-u>normal! f(va(<CR>
+onoremap <silent>al( :<c-u>normal! F)va(<CR>
+
+"inside next/last email address (works for ordinary email addresses)
+onoremap <silent>in@ :<c-u>execute "normal! /[^@ ]\\+@[^@ ]\\+\rgn"<CR>
+onoremap <silent>il@ :<c-u>execute "normal! ?[^@ ]\\+@[^@ ]\\+\rgn"<CR>
+
+"Disable Arrow Keys
+noremap    <Left>    <nop>
+noremap    <Right>   <nop>
+noremap    <Up>      <nop>
+noremap    <Down>    <nop>
 
 "Tabularize hotkey
 noremap <S-t> :Tabularize /
+nnoremap <leader>nt :NERDTreeToggle<CR>
 
-" Remove highlighting after search
-noremap <silent><C-n> :nohlsearch <CR>
+
+""""""""""""""""""""""MY ABBREVIATIONS
+iabbrev @@@ norbu.tsering.cs@gmail.com
+
+noremap <S-t> :Tabularize /
+
+
+""""""""""""""""""""""MY AUTOCOMMANDS
+augroup filetype_markdown
+    autocmd!
+    autocmd FileType markdown call MakeMarkdownBindings()
+    function! MakeMarkdownBindings()
+        onoremap <buffer> ih1 :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+        onoremap <buffer> ah1 :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
+        onoremap <buffer> ih2 :<c-u>execute "normal! ?^--\\+$\r:nohlsearch\rkvg_"<cr>
+        onoremap <buffer> ah2 :<c-u>execute "normal! ?^--\\+$\r:nohlsearch\rg_vk0"<cr>
+    endfunction
+augroup END
